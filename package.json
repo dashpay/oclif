@@ -1,5 +1,5 @@
 {
-  "name": "oclif",
+  "name": "@dashevo/oclif",
   "description": "oclif: create your own CLI",
   "version": "3.4.3",
   "author": "Salesforce",
@@ -121,7 +121,7 @@
       }
     }
   },
-  "repository": "oclif/oclif",
+  "repository": "dashevo/oclif",
   "scripts": {
     "build": "shx rm -rf lib && tsc",
     "devcli:lint": "eslint . --ext .ts --config .eslintrc",
