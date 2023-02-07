@@ -1,12 +1,12 @@
 {
-  "name": "oclif",
+  "name": "@dashevo/oclif",
   "description": "oclif: create your own CLI",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "author": "Salesforce",
   "bin": {
     "oclif": "bin/run"
   },
-  "bugs": "https://github.com/oclif/oclif/issues",
+  "bugs": "https://github.com/dashpay/oclif/issues",
   "dependencies": {
     "@oclif/core": "^1.20.4",
     "@oclif/plugin-help": "^5.1.19",
@@ -76,7 +76,7 @@
     "/lib",
     "/templates"
   ],
-  "homepage": "https://github.com/oclif/oclif",
+  "homepage": "https://github.com/dashpay/oclif",
   "keywords": [
     "oclif"
   ],
@@ -121,7 +121,7 @@
       }
     }
   },
-  "repository": "oclif/oclif",
+  "repository": "dashevo/oclif",
   "scripts": {
     "build": "shx rm -rf lib && tsc",
     "devcli:lint": "eslint . --ext .ts --config .eslintrc",
