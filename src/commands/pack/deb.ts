@@ -9,6 +9,11 @@ import {exec as execSync} from 'child_process'
 import {promisify} from 'node:util'
 
 const exec = promisify(execSync)
+type OclifConfig = {
+  deb?: {
+    dependencies?: string;
+  };
+}
 
 const scripts = {
   /* eslint-disable no-useless-escape */
@@ -33,15 +38,19 @@ export ${config.scopedEnvVarKey('UPDATE_INSTRUCTIONS')}="update with \\"sudo apt
 \$DIR/node \$DIR/run "\$@"
 `,
   /* eslint-enable no-useless-escape */
-  control: (config: Tarballs.BuildConfig, arch: string) => `Package: ${config.config.bin}
+  control: (config: Tarballs.BuildConfig, arch: string) => {
+    const c = config.config.pjson.oclif as OclifConfig
+
+    return `Package: ${config.config.bin}
 Version: ${debVersion(config)}
 Section: main
 Priority: standard
 Architecture: ${arch}
 Maintainer: ${config.config.scopedEnvVar('AUTHOR') || config.config.pjson.author}
 Description: ${config.config.pjson.description}
-${config.config.pjson.oclif.deb?.dependencies ? `Depends: ${config.config.pjson.oclif.deb.dependencies}` : ''}
-`,
+${c.deb?.dependencies ? `Depends: ${c.deb.dependencies}` : ''}
+`
+  },
   ftparchive: (config: Interfaces.Config,
   ) => `
 APT::FTPArchive::Release {
