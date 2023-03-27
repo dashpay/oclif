@@ -40,6 +40,7 @@ Priority: standard
 Architecture: ${arch}
 Maintainer: ${config.config.scopedEnvVar('AUTHOR') || config.config.pjson.author}
 Description: ${config.config.pjson.description}
+${config.config.pjson.oclif.deb?.dependencies ? `Depends: ${config.config.pjson.oclif.deb.dependencies}` : ''}
 `,
   ftparchive: (config: Interfaces.Config,
   ) => `
