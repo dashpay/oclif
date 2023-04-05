@@ -106,14 +106,14 @@ export default class PackDeb extends Command {
 
     await exec('apt-ftparchive packages . > Packages', {cwd: dist})
     this.log('debian packages created')
-    await Promise.all([
-      exec('gzip -c Packages > Packages.gz', {cwd: dist}),
-      exec('bzip2 -k Packages', {cwd: dist}),
-      exec('xz -k Packages', {cwd: dist}),
-      packForFTP(buildConfig, config, dist),
-    ])
-
-    this.log('debian packages archived')
+    // await Promise.all([
+    //   exec('gzip -c Packages > Packages.gz', {cwd: dist}),
+    //   exec('bzip2 -k Packages', {cwd: dist}),
+    //   exec('xz -k Packages', {cwd: dist}),
+    //   packForFTP(buildConfig, config, dist),
+    // ])
+    //
+    // this.log('debian packages archived')
 
     const gpgKey = config.scopedEnvVar('DEB_KEY')
     if (gpgKey) {
