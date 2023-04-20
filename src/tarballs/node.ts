@@ -14,7 +14,7 @@ type Options = {
   nodeVersion: string;
   output: string;
   platform: Interfaces.PlatformTypes;
-  arch: Interfaces.ArchTypes | 'armv7l';
+  arch: Interfaces.ArchTypes | 'arm64';
   tmp: string
 }
 
@@ -28,7 +28,7 @@ async function checkFor7Zip() {
 }
 
 export async function fetchNodeBinary({nodeVersion, output, platform, arch, tmp}: Options): Promise<string> {
-  if (arch === 'arm') arch = 'armv7l'
+  if (arch === 'arm') arch = 'arm64'
   let nodeBase = `node-v${nodeVersion}-${platform}-${arch}`
   let tarball = path.join(tmp, 'node', `${nodeBase}.tar.xz`)
   let url = `https://nodejs.org/dist/v${nodeVersion}/${nodeBase}.tar.xz`
