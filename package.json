@@ -1,7 +1,7 @@
 {
   "name": "@dashevo/oclif",
   "description": "oclif: create your own CLI",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Salesforce",
   "bin": {
     "oclif": "bin/run"
@@ -136,6 +136,7 @@
     "test:unit": "mocha --forbid-only \"test/unit/*.test.ts\"",
     "version": "bin/dev readme && git add README.md"
   },
+  "packageManager": "yarn@1.22.19",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
