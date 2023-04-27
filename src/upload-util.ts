@@ -32,10 +32,10 @@ export function templateShortKey(
   const templates = {
     baseDir: '<%- bin %>',
     unversioned: '<%- bin %>-<%- platform %>-<%- arch %><%- ext %>',
-    versioned: '<%- bin %>-v<%- version %>-<%- sha %>-<%- platform %>-<%- arch %><%- ext %>',
-    manifest: '<%- bin %>-v<%- version %>-<%- sha %>-<%- platform %>-<%- arch %>-buildmanifest',
-    macos: '<%- bin %>-v<%- version %>-<%- sha %>-<%- arch %>.pkg',
-    win32: '<%- bin %>-v<%- version %>-<%- sha %>-<%- arch %>.exe',
+    versioned: '<%- bin %>-v<%- version %>-<%- platform %>-<%- arch %><%- ext %>',
+    manifest: '<%- bin %>-v<%- version %>-<%- platform %>-<%- arch %>-buildmanifest',
+    macos: '<%- bin %>-v<%- version %>-<%- arch %>.pkg',
+    win32: '<%- bin %>-v<%- version %>-<%- arch %>.exe',
     deb: '<%- bin %>_<%- versionShaRevision %>_<%- arch %>.deb',
   }
   return _.template(templates[type])({...options})
@@ -49,6 +49,8 @@ export function debArch(arch: Interfaces.ArchTypes): string {
 }
 
 export function debVersion(buildConfig: TarballConfig): string {
-  return `${buildConfig.config.version.split('-')[0]}.${buildConfig.gitSha}-1`
+  const versionParts = buildConfig.config.version.split('-')
+
+  return `${versionParts[0]}${versionParts.length > 1 ? `~${versionParts[1]}` : ''}-1`
   // see debian_revision: https://www.debian.org/doc/debian-policy/ch-controlfields.html
 }
